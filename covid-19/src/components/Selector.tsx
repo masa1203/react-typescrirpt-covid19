@@ -8,6 +8,8 @@ interface InterfaceCountry {
 
 const Selector = () => {
   const [country, setCountry] = useState<string>("");
+  // 選択したcountryのデータを取得する
+  const getCountryData = () => {};
   return (
     <div>
       <p>セレクタ-</p>
