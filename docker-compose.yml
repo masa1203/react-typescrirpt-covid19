@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./covid-19:/code
+    tty: true
+    ports:
+      - 3000:3000
+    working_dir: /code
+    command: yarn start
