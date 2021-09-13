@@ -1,3 +1,4 @@
+import { useState } from "react";
 import countriesJson from "../countries.json";
 
 interface InterfaceCountry {
@@ -6,16 +7,23 @@ interface InterfaceCountry {
 }
 
 const Selector = () => {
+  const [country, setCountry] = useState<string>("");
   return (
     <div>
       <p>セレクタ-</p>
-      <select>
+      {/* e: イベントパラメータ */}
+      <select
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+          setCountry(e.target.value)
+        }
+      >
         {countriesJson.map((country: InterfaceCountry, index: number) => (
           <option value={country.Slug} key={index}>
             {country.Country}
           </option>
         ))}
       </select>
+      {country}
     </div>
   );
 };
