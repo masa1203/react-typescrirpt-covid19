@@ -15,17 +15,12 @@ export interface InterfaceCountriesSummaryData {
 
 interface InterfaceCard {
   allCountriesData: [];
-  getAllCountriesData: () => void;
 }
 
 const Card = (props: InterfaceCard) => {
   return (
     <div>
       {console.log(props.allCountriesData)}
-      <h1>ワールド</h1>
-      <button onClick={() => props.getAllCountriesData()}>
-        Get All Countries Data
-      </button>
       {props.allCountriesData.map(
         (singleCountryData: InterfaceCountriesSummaryData, index: number) => (
           <div key={index}>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import countriesJson from "./countries.json";
 import TopPage from "./pages/TopPage";
@@ -63,12 +64,13 @@ function App() {
       });
   };
 
-  // サマリーデータを取得する
-  const getAllCountriesData = () => {
+  // WorldPageが表示されたときにuseEffectでsammaryデータを取得したい
+  useEffect(() => {
+    // サマリーデータを取得する
     fetch("https://api.covid19api.com/summary")
       .then((res) => res.json())
       .then((data) => setAllCountriesData(data.Countries));
-  };
+  }, []);
 
   return (
     <BrowserRouter>
@@ -82,10 +84,7 @@ function App() {
           />
         </Route>
         <Route exact path="/world">
-          <WorldPage
-            getAllCountriesData={getAllCountriesData}
-            allCountriesData={allCountriesData}
-          />
+          <WorldPage allCountriesData={allCountriesData} />
         </Route>
       </Switch>
     </BrowserRouter>
