@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter } from "react-router-dom";
 import countriesJson from "./countries.json";
 import TopPage from "./pages/TopPage";
 import "./App.css";
+import WorldPage from "./pages/WorldPage";
 
 interface InterfaceSetCountryData {
   date: string;
@@ -53,6 +54,9 @@ function App() {
             getCountryData={getCountryData}
             countryData={countryData}
           />
+        </Route>
+        <Route exact path="/world">
+          <WorldPage />
         </Route>
       </Switch>
     </BrowserRouter>
