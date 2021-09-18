@@ -44,15 +44,18 @@ function App() {
   };
 
   return (
-    <div>
-      {console.log("App.countryData", countryData)}
-      <TopPage
-        countriesJson={countriesJson}
-        setCountry={setCountry}
-        getCountryData={getCountryData}
-        countryData={countryData}
-      />
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <TopPage
+            countriesJson={countriesJson}
+            setCountry={setCountry}
+            getCountryData={getCountryData}
+            countryData={countryData}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
