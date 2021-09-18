@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-interface InterfaceAllCountriesData {
+interface InterfaceCountriesSummaryData {
   Country: string;
   CountryCode: string;
   Date: string;
@@ -17,7 +17,7 @@ interface InterfaceAllCountriesData {
 
 const Card = () => {
   const [allCountriesData, setAllCountriesData] = useState<
-    InterfaceAllCountriesData[]
+    InterfaceCountriesSummaryData[]
   >([
     {
       Country: "",
@@ -46,8 +46,14 @@ const Card = () => {
       <button onClick={() => getAllCountriesData()}>
         Get All Countries Data
       </button>
-      {allCountriesData.map((singleCountryData) =>
-        console.log(singleCountryData)
+      {allCountriesData.map(
+        (singleCountryData: InterfaceCountriesSummaryData, index: number) => (
+          <div key={index}>
+            <h2>{singleCountryData.Country}</h2>
+            <p>新規感染者：{singleCountryData.NewConfirmed}</p>
+            <p>感染者総数：{singleCountryData.TotalConfirmed}</p>
+          </div>
+        )
       )}
     </div>
   );
