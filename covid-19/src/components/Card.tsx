@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-interface InterfaceCountriesSummaryData {
+export interface InterfaceCountriesSummaryData {
   Country: string;
   CountryCode: string;
   Date: string;
@@ -15,38 +13,20 @@ interface InterfaceCountriesSummaryData {
   TotalRecovered: number;
 }
 
-const Card = () => {
-  const [allCountriesData, setAllCountriesData] = useState<
-    InterfaceCountriesSummaryData[]
-  >([
-    {
-      Country: "",
-      CountryCode: "",
-      Date: "",
-      ID: "",
-      NewConfirmed: 0,
-      NewDeaths: 0,
-      NewRecovered: 0,
-      Premium: {},
-      Slug: "",
-      TotalConfirmed: 0,
-      TotalDeaths: 0,
-      TotalRecovered: 0,
-    },
-  ]);
-  const getAllCountriesData = () => {
-    fetch("https://api.covid19api.com/summary")
-      .then((res) => res.json())
-      .then((data) => setAllCountriesData(data.Countries));
-  };
+interface InterfaceCard {
+  allCountriesData: [];
+  getAllCountriesData: () => void;
+}
+
+const Card = (props: InterfaceCard) => {
   return (
     <div>
-      {console.log(allCountriesData)}
+      {console.log(props.allCountriesData)}
       <h1>ワールド</h1>
-      <button onClick={() => getAllCountriesData()}>
+      <button onClick={() => props.getAllCountriesData()}>
         Get All Countries Data
       </button>
-      {allCountriesData.map(
+      {props.allCountriesData.map(
         (singleCountryData: InterfaceCountriesSummaryData, index: number) => (
           <div key={index}>
             <h2>{singleCountryData.Country}</h2>

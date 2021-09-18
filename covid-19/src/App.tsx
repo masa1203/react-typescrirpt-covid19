@@ -4,6 +4,7 @@ import countriesJson from "./countries.json";
 import TopPage from "./pages/TopPage";
 import "./App.css";
 import WorldPage from "./pages/WorldPage";
+import { InterfaceCountriesSummaryData } from "./components/Card";
 
 interface InterfaceSetCountryData {
   date: string;
@@ -22,6 +23,24 @@ function App() {
     newRecovered: "",
     totalRecoverd: "",
   });
+  const [allCountriesData, setAllCountriesData] = useState<
+    InterfaceCountriesSummaryData[]
+  >([
+    {
+      Country: "",
+      CountryCode: "",
+      Date: "",
+      ID: "",
+      NewConfirmed: 0,
+      NewDeaths: 0,
+      NewRecovered: 0,
+      Premium: {},
+      Slug: "",
+      TotalConfirmed: 0,
+      TotalDeaths: 0,
+      TotalRecovered: 0,
+    },
+  ]);
 
   // 選択したcountryのデータを取得する
   const getCountryData = () => {
@@ -44,6 +63,13 @@ function App() {
       });
   };
 
+  // サマリーデータを取得する
+  const getAllCountriesData = () => {
+    fetch("https://api.covid19api.com/summary")
+      .then((res) => res.json())
+      .then((data) => setAllCountriesData(data.Countries));
+  };
+
   return (
     <BrowserRouter>
       <Switch>
@@ -56,7 +82,10 @@ function App() {
           />
         </Route>
         <Route exact path="/world">
-          <WorldPage />
+          <WorldPage
+            getAllCountriesData={getAllCountriesData}
+            allCountriesData={allCountriesData}
+          />
         </Route>
       </Switch>
     </BrowserRouter>
