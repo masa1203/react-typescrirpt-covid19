@@ -42,10 +42,12 @@ function App() {
       TotalRecovered: 0,
     },
   ]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // 選択したcountryのデータを取得する
   const getCountryData = () => {
     console.log("getCountryData start!");
+    setIsLoading(true);
     fetch(`https://api.covid19api.com/country/${country}`)
       .then((res) => res.json())
       .then((data) => {
@@ -61,15 +63,21 @@ function App() {
           ),
           totalRecoverd: data[data.length - 1].Recovered,
         });
+        setIsLoading(false);
       });
   };
 
   // WorldPageが表示されたときにuseEffectでsammaryデータを取得したい
   useEffect(() => {
+    console.log("getSummaryData start!");
+    setIsLoading(true);
     // サマリーデータを取得する
     fetch("https://api.covid19api.com/summary")
       .then((res) => res.json())
-      .then((data) => setAllCountriesData(data.Countries));
+      .then((data) => {
+        setAllCountriesData(data.Countries);
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -81,10 +89,14 @@ function App() {
             setCountry={setCountry}
             getCountryData={getCountryData}
             countryData={countryData}
+            isLoading={isLoading}
           />
         </Route>
         <Route exact path="/world">
-          <WorldPage allCountriesData={allCountriesData} />
+          <WorldPage
+            allCountriesData={allCountriesData}
+            isLoading={isLoading}
+          />
         </Route>
       </Switch>
     </BrowserRouter>

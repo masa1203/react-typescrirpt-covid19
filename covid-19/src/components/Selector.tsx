@@ -10,6 +10,7 @@ interface SelectorProps extends InterfaceCountry {
   countriesJson: InterfaceCountry[];
   setCountry: React.Dispatch<React.SetStateAction<string>>;
   getCountryData: () => void;
+  isLoading: boolean;
 }
 
 const Selector = (props: SelectorProps) => {
@@ -41,9 +42,10 @@ const Selector = (props: SelectorProps) => {
           <Button
             variant="outline-dark"
             size="lg"
+            disabled={props.isLoading}
             onClick={() => props.getCountryData()}
           >
-            Get Data
+            {props.isLoading ? "Loading..." : "Click to Get Data"}
           </Button>
         </Col>
       </Row>

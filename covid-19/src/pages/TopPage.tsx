@@ -18,6 +18,7 @@ const TopPage = (props: any) => {
               getCountryData={props.getCountryData}
               Country={""}
               Slug={""}
+              isLoading={props.isLoading}
             />
           </Col>
         </Row>

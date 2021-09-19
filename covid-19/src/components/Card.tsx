@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 import { Card as _Card } from "react-bootstrap";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Spinner } from "react-bootstrap";
 export interface InterfaceCountriesSummaryData {
   Country: string;
   CountryCode: string;
@@ -18,30 +18,42 @@ export interface InterfaceCountriesSummaryData {
 
 interface InterfaceCard {
   allCountriesData: [];
+  isLoading: boolean;
 }
 
 const Card = (props: InterfaceCard) => {
   return (
-    <Row xs={1} md={4} className="g-6">
-      {props.allCountriesData.map(
-        (singleCountryData: InterfaceCountriesSummaryData, index: number) => (
-          <Col>
-            <_Card
-              bg="Light"
-              key={index}
-              style={{ width: "18rem" }}
-              className="mb-2"
-            >
-              <_Card.Header>{singleCountryData.Country}</_Card.Header>
-              <_Card.Body>
-                <p>新規感染者：{singleCountryData.NewConfirmed}</p>
-                <p>感染者総数：{singleCountryData.TotalConfirmed}</p>
-              </_Card.Body>
-            </_Card>
-          </Col>
-        )
+    <>
+      {props.isLoading ? (
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      ) : (
+        <Row xs={1} md={4} className="g-6">
+          {props.allCountriesData.map(
+            (
+              singleCountryData: InterfaceCountriesSummaryData,
+              index: number
+            ) => (
+              <Col>
+                <_Card
+                  bg="Light"
+                  key={index}
+                  style={{ width: "18rem" }}
+                  className="mb-2"
+                >
+                  <_Card.Header>{singleCountryData.Country}</_Card.Header>
+                  <_Card.Body>
+                    <p>新規感染者：{singleCountryData.NewConfirmed}</p>
+                    <p>感染者総数：{singleCountryData.TotalConfirmed}</p>
+                  </_Card.Body>
+                </_Card>
+              </Col>
+            )
+          )}
+        </Row>
       )}
-    </Row>
+    </>
   );
 };
 

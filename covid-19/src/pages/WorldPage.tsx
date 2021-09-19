@@ -8,7 +8,10 @@ const WorldPage = (props: any) => {
       <Header />
       <Container style={{ marginBottom: 2 }}>
         <h2>世界の感染状況</h2>
-        <Card allCountriesData={props.allCountriesData} />
+        <Card
+          allCountriesData={props.allCountriesData}
+          isLoading={props.isLoading}
+        />
       </Container>
     </div>
   );
