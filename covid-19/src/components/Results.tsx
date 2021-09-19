@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-pascal-case */
+import { Card as _Card, Row, Col } from "react-bootstrap";
+
 interface InterfaceResults {
   countryData: {
     date: string;
@@ -9,15 +12,47 @@ interface InterfaceResults {
 }
 
 const Results = (props: InterfaceResults) => {
-  console.log("Results.props:", props);
   return (
-    <div>
-      <p>日付:{props.countryData.date.slice(0, 10)}</p>
-      <p>新規感染者:{props.countryData.newConfirmed.toLocaleString()}</p>
-      <p>感染者総数:{props.countryData.totalConfirmed.toLocaleString()}</p>
-      <p>新規回復者:{props.countryData.newRecovered.toLocaleString()}</p>
-      <p>回復者総数:{props.countryData.totalRecoverd.toLocaleString()}</p>
-    </div>
+    <Row className="my-2">
+      <Col lg="10">
+        <_Card bg="light">
+          <_Card.Body>
+            <_Card.Title className="text-muted">日付</_Card.Title>
+            <_Card.Text>
+              <ul>
+                <li>{props.countryData.date.slice(0, 10)}</li>
+              </ul>
+            </_Card.Text>
+
+            <_Card.Title className="text-muted">新規感染者</_Card.Title>
+            <_Card.Text>
+              <ul>
+                <li>{props.countryData.newConfirmed.toLocaleString()}</li>
+              </ul>
+            </_Card.Text>
+
+            <_Card.Title className="text-muted">感染者総数</_Card.Title>
+            <_Card.Text>
+              <ul>
+                <li>{props.countryData.totalConfirmed.toLocaleString()}</li>
+              </ul>
+            </_Card.Text>
+            <_Card.Title className="text-muted">新規回復者</_Card.Title>
+            <_Card.Text>
+              <ul>
+                <li>{props.countryData.newRecovered.toLocaleString()}</li>
+              </ul>
+            </_Card.Text>
+            <_Card.Title className="text-muted">回復者総数</_Card.Title>
+            <_Card.Text>
+              <ul>
+                <li>{props.countryData.totalRecoverd.toLocaleString()}</li>
+              </ul>
+            </_Card.Text>
+          </_Card.Body>
+        </_Card>
+      </Col>
+    </Row>
   );
 };
 
