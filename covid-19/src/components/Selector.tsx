@@ -1,4 +1,5 @@
 import React from "react";
+import { Row, Col, FloatingLabel, Form, Button } from "react-bootstrap";
 
 interface InterfaceCountry {
   Country: string;
@@ -16,21 +17,37 @@ const Selector = (props: SelectorProps) => {
 
   return (
     <div>
-      <p>セレクタ-</p>
-      <option>Select A Country</option>
+      <h2>国ごとの感染状況</h2>
       {/* e: イベントパラメータ */}
-      <select
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-          props.setCountry(e.target.value);
-        }}
-      >
-        {props.countriesJson.map((country: InterfaceCountry, index: number) => (
-          <option value={country.Slug} key={index}>
-            {country.Country}
-          </option>
-        ))}
-      </select>
-      <button onClick={() => props.getCountryData()}> Get Data </button>
+      <Row className="align-items-center">
+        <Col>
+          <FloatingLabel controlId="floatingSelect" label="Select Country">
+            <Form.Select
+              aria-label="Floating label select Country"
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                props.setCountry(e.target.value);
+              }}
+            >
+              {props.countriesJson.map(
+                (country: InterfaceCountry, index: number) => (
+                  <option value={country.Slug} key={index}>
+                    {country.Country}
+                  </option>
+                )
+              )}
+            </Form.Select>
+          </FloatingLabel>
+        </Col>
+        <Col xs lg="2">
+          <Button
+            variant="outline-dark"
+            size="lg"
+            onClick={() => props.getCountryData()}
+          >
+            Get Data
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 };
