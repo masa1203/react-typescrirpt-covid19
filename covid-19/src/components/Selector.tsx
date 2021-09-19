@@ -17,7 +17,6 @@ const Selector = (props: SelectorProps) => {
 
   return (
     <div>
-      <h2>国ごとの感染状況</h2>
       {/* e: イベントパラメータ */}
       <Row className="align-items-center">
         <Col>

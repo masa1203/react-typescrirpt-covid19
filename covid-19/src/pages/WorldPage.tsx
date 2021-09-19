@@ -7,6 +7,7 @@ const WorldPage = (props: any) => {
     <div>
       <Header />
       <Container style={{ marginBottom: 2 }}>
+        <h2>世界の感染状況</h2>
         <Card allCountriesData={props.allCountriesData} />
       </Container>
     </div>

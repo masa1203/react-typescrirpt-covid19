@@ -9,6 +9,7 @@ const TopPage = (props: any) => {
     <div>
       <Header />
       <Container>
+        <h2>国ごとの感染状況</h2>
         <Row>
           <Col>
             <Selector
