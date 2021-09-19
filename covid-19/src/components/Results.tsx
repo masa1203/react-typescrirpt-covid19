@@ -12,6 +12,8 @@ interface InterfaceResults {
 }
 
 const Results = (props: InterfaceResults) => {
+  const { date, newConfirmed, totalConfirmed, newRecovered, totalRecoverd } =
+    props.countryData;
   return (
     <Row className="my-2">
       <Col lg="10">
@@ -19,25 +21,25 @@ const Results = (props: InterfaceResults) => {
           <_Card.Body>
             <_Card.Title className="text-muted">日付</_Card.Title>
             <_Card.Text>
-              <li>{props.countryData.date.slice(0, 10)}</li>
+              <li>{date.slice(0, 10)}</li>
             </_Card.Text>
 
             <_Card.Title className="text-muted">新規感染者</_Card.Title>
             <_Card.Text>
-              <li>{props.countryData.newConfirmed.toLocaleString()}</li>
+              <li>{newConfirmed.toLocaleString()}</li>
             </_Card.Text>
 
             <_Card.Title className="text-muted">感染者総数</_Card.Title>
             <_Card.Text>
-              <li>{props.countryData.totalConfirmed.toLocaleString()}</li>
+              <li>{totalConfirmed.toLocaleString()}</li>
             </_Card.Text>
             <_Card.Title className="text-muted">新規回復者</_Card.Title>
             <_Card.Text>
-              <li>{props.countryData.newRecovered.toLocaleString()}</li>
+              <li>{newRecovered.toLocaleString()}</li>
             </_Card.Text>
             <_Card.Title className="text-muted">回復者総数</_Card.Title>
             <_Card.Text>
-              <li>{props.countryData.totalRecoverd.toLocaleString()}</li>
+              <li>{totalRecoverd.toLocaleString()}</li>
             </_Card.Text>
           </_Card.Body>
         </_Card>
