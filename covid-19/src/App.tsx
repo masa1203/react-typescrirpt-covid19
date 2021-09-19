@@ -64,7 +64,12 @@ function App() {
           totalRecoverd: data[data.length - 1].Recovered,
         });
         setIsLoading(false);
-      });
+      })
+      .catch((err) =>
+        alert(
+          "エラーが発生しました。ページをリロードして、もう一度トライしてください。"
+        )
+      );
   };
 
   // WorldPageが表示されたときにuseEffectでsammaryデータを取得したい
@@ -77,7 +82,12 @@ function App() {
       .then((data) => {
         setAllCountriesData(data.Countries);
         setIsLoading(false);
-      });
+      })
+      .catch((err) =>
+        alert(
+          "エラーが発生しました。ページをリロードして、もう一度トライしてください。"
+        )
+      );
   }, []);
 
   return (
