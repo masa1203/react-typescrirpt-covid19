@@ -16,7 +16,7 @@ interface InterfaceSetCountryData {
 }
 
 function App() {
-  const [country, setCountry] = useState<string>("");
+  const [country, setCountry] = useState<string>("japan");
   const [countryData, setCountryData] = useState<InterfaceSetCountryData>({
     date: "",
     newConfirmed: "",
@@ -28,7 +28,7 @@ function App() {
     InterfaceCountriesSummaryData[]
   >([
     {
-      Country: "",
+      Country: "ContryName",
       CountryCode: "",
       Date: "",
       ID: "",
